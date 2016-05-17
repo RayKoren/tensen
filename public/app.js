@@ -1,21 +1,19 @@
 $(document).ready(function() {
-    //////////// SOUNDCLOUD AUTHENTICATION      //////////////////////////////
-
+  var SCConnected = false;
+    /// SOUNDCLOUD AUTHENTICATION ///
     SC.initialize({
         client_id: '19f527fc69b85cf2de94a95f9c538487',
         redirect_uri: 'https://tesen.firebaseapp.com/callback.html'
     });
     $("#soundcloudConnect").click(function(){
-      // initiate auth popup
+      // initiate auth popup //
       SC.connect().then(function() {
         return SC.get('/me');
       }).then(function(me) {
         alert('Hello, ' + me.username);
       });
     });
-
-
-  ///// end soundcloud init /////
+    ///// end soundcloud init /////
     ///// AudioContext init /////
     var context;
     window.addEventListener('load', init, false);
@@ -281,8 +279,6 @@ $(document).ready(function() {
 
 
 
-
-
     // create and send request (for reverb audio)
 
     // var request = new XMLHttpRequest(),
@@ -294,16 +290,5 @@ $(document).ready(function() {
     //
     // request.send();
 
-    // $(".touchPad").click(function() {
-    // console.log($(this).attr("class"));
-    // //playSound(source7.buffer);
-    // });
-
-    // var someVar;
-    // someVar = some_other_function();
-    // alert(someVar);
-    // div.addEventListener("click", function(){
-    //     some_function(someVar);
-    // }, false);
 
 });
