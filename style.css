@@ -1,0 +1,61 @@
+body {
+  width: 320px;
+  height: 480px;
+  background-color: #313738;
+}
+div {
+  color: white;
+}
+div.touchPad {
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 80px;
+  height: 80px;
+  background-color: #07889B;
+}
+.touchPad:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+div#footer {
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 60px;
+  color: white;
+}
+div#header {
+  border: 1px solid black;
+  height: 60px;
+  color: white;
+}
+.scBox {
+  border: 1px solid black;
+  height: 100px;
+}
+
+.knob {
+    position:relative;
+    cursor: move;
+    background: #b33b3b;
+    -webkit-box-shadow: -3px -4px 10px 1px #666;
+    box-shadow: -3px -4px 10px 1px #666;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    border: 1px solid white;
+    height: 40px;
+    width: 40px;
+}
+
+.knob .dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 2px;
+    background: #f90;
+}
+
+.title {
+  border: 1px solid white;
+  background-color: #07889B;
+};
