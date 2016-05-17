@@ -1,4 +1,21 @@
 $(document).ready(function() {
+    //////////// SOUNDCLOUD AUTHENTICATION      //////////////////////////////
+
+    SC.initialize({
+        client_id: '19f527fc69b85cf2de94a95f9c538487',
+        redirect_uri: 'https://tesen.firebaseapp.com/callback.html'
+    });
+    $("#soundcloudConnect").click(function(){
+      // initiate auth popup
+      SC.connect().then(function() {
+        return SC.get('/me');
+      }).then(function(me) {
+        alert('Hello, ' + me.username);
+      });
+    });
+
+
+  ///// end soundcloud init /////
     ///// AudioContext init /////
     var context;
     window.addEventListener('load', init, false);
@@ -23,9 +40,9 @@ $(document).ready(function() {
         event.preventDefault();
         sel = $(".soundBank").val();
         context.close();
-          $(".touchPad").off();
-          $(document).off('keydown');
-          init();
+        $(".touchPad").off();
+        $(document).off('keydown');
+        init();
 
         console.log(sel);
     });
