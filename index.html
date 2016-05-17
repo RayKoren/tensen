@@ -29,73 +29,90 @@
   <body class="container-fluid">
   <!-- Header -->
     <div class="row">
-      <div class="col-md-8 title">
+      <div class="col-md-12 title">
         <h1>tesen</h1>
-      </div>
-      <div class="col-md-4">
-        <button type="button" class="btn btn-info btn-block">Info</button>
-        <img src="http://connect.soundcloud.com/2/btn-connect-s.png" alt="soundcloud connect" />
+          <button type="button" class="btn btn-info btn-xs">Info</button>
+          <img src="http://connect.soundcloud.com/2/btn-connect-s.png" alt="soundcloud connect" />
+          <form class="" action="index.html" method="post">
+            <label for="soundBank">Choose Sound
+              <select class="soundBank" name="soundBank">
+                <option value="tone1">Bank 1</option>
+                <option value="tone2">Bank 2</option>
+              </select>
+              <button type="submit" value="Submit" class="btn btn-success btn-xs">Change Sound</button>
+            </label>
+          </form>
       </div>
     </div>
-    <br>
+    <div class="row">
+      <div class="col-xs-12 divide">
+      </div>
+    </div>
     <!-- Buttons -->
     <div class="row">
-      <div class="col-md-3 touchPad t1">Q</div>
-      <div class="col-md-3 touchPad t2">W</div>
-      <div class="col-md-3 touchPad t3">E</div>
-      <div class="col-md-3 touchPad t4">R</div>
+      <div class="col-xs-3 touchPad t1">Q</div>
+      <div class="col-xs-3 touchPad t2">W</div>
+      <div class="col-xs-3 touchPad t3">E</div>
+      <div class="col-xs-3 touchPad t4">R</div>
     </div>
     <div class="row">
-      <div class="col-md-3 touchPad t5">Y</div>
-      <div class="col-md-3 touchPad t6">U</div>
-      <div class="col-md-3 touchPad t7">I</div>
-      <div class="col-md-3 touchPad t8">O</div>
+      <div class="col-xs-3 touchPad t5">Y</div>
+      <div class="col-xs-3 touchPad t6">U</div>
+      <div class="col-xs-3 touchPad t7">I</div>
+      <div class="col-xs-3 touchPad t8">O</div>
     </div>
     <div class="row">
-      <div class="col-md-3 touchPad t9">A</div>
-      <div class="col-md-3 touchPad t10">S</div>
-      <div class="col-md-3 touchPad t11">D</div>
-      <div class="col-md-3 touchPad t12">F</div>
+      <div class="col-xs-3 touchPad t9">A</div>
+      <div class="col-xs-3 touchPad t10">S</div>
+      <div class="col-xs-3 touchPad t11">D</div>
+      <div class="col-xs-3 touchPad t12">F</div>
     </div>
     <div class="row">
-      <div class="col-md-3 touchPad t13">H</div>
-      <div class="col-md-3 touchPad t14">J</div>
-      <div class="col-md-3 touchPad t15">K</div>
-      <div class="col-md-3 touchPad t16">L</div>
+      <div class="col-xs-3 touchPad t13">H</div>
+      <div class="col-xs-3 touchPad t14">J</div>
+      <div class="col-xs-3 touchPad t15">K</div>
+      <div class="col-xs-3 touchPad t16">L</div>
     </div>
-    <br>
+    <div class="row">
+      <div class="col-xs-12 divide">
+      </div>
+    </div>
 
     <!--Footer-->
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-xs-2">
         <div class="knob">
             <div class="dot" style="top: 27.9808px; left: 13.2673px;"></div>
         </div>
       </div>
-      <div class="col-md-2" >Vol</div>
-      <div class="col-md-8">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Save</button>
+      <div class="col-xs-2" >Vol</div>
+      <div class="col-xs-8">
+        <button type="button" class="btn btn-danger btn-lg btn-block">Stop</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-xs-2">
         <div class="knob">
             <div class="dot" style="top: 27.9808px; left: 13.2673px;"></div>
         </div>
       </div>
-      <div class="col-md-2">Bank</div>
-      <div class="col-md-8">
+      <div class="col-xs-2">Delay</div>
+      <div class="col-xs-8">
         <button type="button" class="btn btn-primary btn-lg btn-block">Record</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 scBox">SoundCloud Box</div>
+      <div class="col-xs-12 scBox">SoundCloud Box
+        <iframe id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
+      </div>
     </div>
+  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
   </body>
 </html>

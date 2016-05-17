@@ -16,12 +16,18 @@ div.touchPad {
 .touchPad:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
-
+.divide {
+  background-color: hsl(31, 84%, 68%);
+  border-radius: 10em;
+  height: 1em;
+  width: 320px;
+}
 div#footer {
   border-radius: 5px;
   border: 1px solid black;
   height: 60px;
   color: white;
+  background-color: hsl(0, 0%, 0%);
 }
 div#header {
   border: 1px solid black;
@@ -37,8 +43,8 @@ div#header {
     position:relative;
     cursor: move;
     background: #b33b3b;
-    -webkit-box-shadow: -3px -4px 10px 1px #666;
-    box-shadow: -3px -4px 10px 1px #666;
+    /*-webkit-box-shadow: -2px -2px 5px 1px #666;
+    box-shadow: -2px -2px 5px 1px #666; */
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
