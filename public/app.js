@@ -1,17 +1,17 @@
 $(document).ready(function() {
-  var SCConnected = false;
+    var SCConnected = false;
     /// SOUNDCLOUD AUTHENTICATION ///
     SC.initialize({
         client_id: '19f527fc69b85cf2de94a95f9c538487',
         redirect_uri: 'https://tesen.firebaseapp.com/callback.html'
     });
-    $("#soundcloudConnect").click(function(){
-      // initiate auth popup //
-      SC.connect().then(function() {
-        return SC.get('/me');
-      }).then(function(me) {
-        alert('Hello, ' + me.username);
-      });
+    $("#soundcloudConnect").click(function() {
+        // initiate auth popup //
+        SC.connect().then(function() {
+            return SC.get('/me');
+        }).then(function(me) {
+            alert('Hello, ' + me.username);
+        });
     });
     ///// end soundcloud init /////
     ///// AudioContext init /////
@@ -53,22 +53,22 @@ $(document).ready(function() {
 
             bufferLoader = new BufferLoader(
                 context, [
-                    '../samples/Bank 1/10.wav',
-                    '../samples/Bank 1/11.wav',
-                    '../samples/Bank 1/12.wav',
-                    '../samples/Bank 1/13.wav',
-                    '../samples/Bank 1/14.wav',
-                    '../samples/Bank 1/15.wav',
                     '../samples/Bank 1/16.wav',
-                    '../samples/Bank 1/10.wav',
-                    '../samples/Bank 1/11.wav',
-                    '../samples/Bank 1/12.wav',
-                    '../samples/Bank 1/13.wav',
-                    '../samples/Bank 1/14.wav',
-                    '../samples/Bank 1/15.wav',
-                    '../samples/Bank 1/16.wav',
-                    '../samples/Bank 1/15.wav',
-                    '../samples/Bank 1/16.wav',
+                    '../samples/Bank 1/17.wav',
+                    '../samples/Bank 1/18.wav',
+                    '../samples/Bank 1/19.wav',
+                    '../samples/Bank 1/20.wav',
+                    '../samples/Bank 1/21.wav',
+                    '../samples/Bank 1/22.wav',
+                    '../samples/Bank 1/23.wav',
+                    '../samples/Bank 1/24.wav',
+                    '../samples/Bank 1/25.wav',
+                    '../samples/Bank 1/26.wav',
+                    '../samples/Bank 1/27.wav',
+                    '../samples/Bank 1/28.wav',
+                    '../samples/Bank 1/29.wav',
+                    '../samples/Bank 1/30.wav',
+                    '../samples/Bank 1/31.wav',
                 ],
                 finishedLoading
             );
@@ -77,22 +77,22 @@ $(document).ready(function() {
             context = new AudioContext();
             bufferLoader = new BufferLoader(
                 context, [
-                    '../samples/Bank 2/Koto 1.wav',
-                    '../samples/Bank 2/Koto 2.wav',
-                    '../samples/Bank 2/Koto 3.wav',
-                    '../samples/Bank 2/Koto 4.wav',
-                    '../samples/Bank 2/Koto 5.wav',
-                    '../samples/Bank 2/Koto 6.wav',
-                    '../samples/Bank 2/Koto 7.wav',
-                    '../samples/Bank 2/Koto 1.wav',
-                    '../samples/Bank 2/Koto 2.wav',
-                    '../samples/Bank 2/Koto 3.wav',
-                    '../samples/Bank 2/Koto 4.wav',
-                    '../samples/Bank 2/Koto 5.wav',
-                    '../samples/Bank 2/Koto 6.wav',
-                    '../samples/Bank 2/Koto 7.wav',
-                    '../samples/Bank 2/Koto 1.wav',
-                    '../samples/Bank 2/Koto 2.wav',
+                    '../samples/Bank 2/1.wav',
+                    '../samples/Bank 2/2.wav',
+                    '../samples/Bank 2/3.wav',
+                    '../samples/Bank 2/4.wav',
+                    '../samples/Bank 2/5.wav',
+                    '../samples/Bank 2/6.wav',
+                    '../samples/Bank 2/7.wav',
+                    '../samples/Bank 2/8.wav',
+                    '../samples/Bank 2/9.wav',
+                    '../samples/Bank 2/10.wav',
+                    '../samples/Bank 2/11.wav',
+                    '../samples/Bank 2/12.wav',
+                    '../samples/Bank 2/13.wav',
+                    '../samples/Bank 2/14.wav',
+                    '../samples/Bank 2/15.wav',
+                    '../samples/Bank 2/16.wav',
                 ],
                 finishedLoading
             );
@@ -274,7 +274,22 @@ $(document).ready(function() {
             }
             playSound(note);
         });
-    };
+        /// end of playing loaded buffers ///
+        var recorder = new SC.Recorder();
+        $("#recordButton").click(function(){
+          recorder.start();
+          console.log('Recording started');
+        });
+        $("#stopRecordButton").click(function(){
+          recorder.getTracks().forEach(function(track) {
+     track.stop();
+   });
+        });
+
+
+
+
+    }; // end of on ready func
 
 
 
