@@ -16,6 +16,14 @@ div.touchPad {
 .touchPad:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
+.touchPad:active {
+  background-color: #E37222;
+  box-shadow: 1px 2px 2px 1px hsl(0, 35%, 93%);
+}
+.active {
+  background-color: #E37222;
+  box-shadow: 1px 2px 2px 1px hsl(0, 35%, 93%);
+}
 .divide {
   background-color: hsl(31, 84%, 68%);
   border-radius: 10em;

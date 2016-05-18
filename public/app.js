@@ -99,11 +99,22 @@ $(document).ready(function() {
         }
         bufferLoader.load();
     }
-    ///// playSound function declaration /////
+    /////// playSound function declaration /////
     function playSound(buffer) {
+        var delayNode = context.createDelay();
+        var gainNode = context.createGain();
         var source = context.createBufferSource();
+        var oscGain = document.getElementById('oscGain').value;
+        var delayAmount = document.getElementById('delayAmount').value;
         source.buffer = buffer;
-        source.connect(context.destination);
+        //source.connect(context.destination);
+        delayNode.delayTime.value = delayAmount;
+        gainNode.gain.value = oscGain;
+
+        source.connect(gainNode);
+        source.connect(delayNode);
+        delayNode.connect(context.destination);
+        gainNode.connect(context.destination);
         source.start(0);
     }
 
@@ -222,6 +233,7 @@ $(document).ready(function() {
         $(document).keydown(function(event) {
             console.log(event.keyCode);
             var note = event.keyCode;
+            //$(`#n${note}`).toggleClass("active");
             switch (note) {
                 case 81:
                     note = bufferList[0];
@@ -275,19 +287,16 @@ $(document).ready(function() {
             playSound(note);
         });
         /// end of playing loaded buffers ///
+
+        /// Recorder ///
         var recorder = new SC.Recorder();
-        $("#recordButton").click(function(){
-          recorder.start();
-          console.log('Recording started');
+        $("#recordButton").click(function() {
+            recorder.start();
+            console.log('Recording started');
         });
-        $("#stopRecordButton").click(function(){
-          recorder.getTracks().forEach(function(track) {
-     track.stop();
-   });
-        });
-
-
-
+        $("#stopRecordButton").click(function() {
+            recorder.stop();
+            });
 
     }; // end of on ready func
 

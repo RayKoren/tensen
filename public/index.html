@@ -52,7 +52,7 @@
     </div>
     <!-- Buttons -->
     <div class="row">
-      <div class="col-xs-3 touchPad t1">Q</div>
+      <div class="col-xs-3 touchPad t1" id ="n81">Q</div>
       <div class="col-xs-3 touchPad t2">W</div>
       <div class="col-xs-3 touchPad t3">E</div>
       <div class="col-xs-3 touchPad t4">R</div>
@@ -82,25 +82,21 @@
 
     <!--Footer-->
     <div class="row">
-      <div class="col-xs-2">
-        <div class="knob">
-            <div class="dot" style="top: 27.9808px; left: 13.2673px;"></div>
-        </div>
+      <div class="col-xs-6">
+        <input id="oscGain" type="range" min="0" step= "1" max="20" value="3"/>
       </div>
       <div class="col-xs-2" >Vol</div>
-      <div class="col-xs-8">
-        <button type="button" class="btn btn-danger btn-lg btn-block" id="stopRecordButton">Stop</button>
+      <div class="col-xs-4">
+        <button type="button" class="btn btn-danger btn-sm btn-block" id="stopRecordButton">Stop</button>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-2">
-        <div class="knob">
-            <div class="dot" style="top: 27.9808px; left: 13.2673px;"></div>
-        </div>
+      <div class="col-xs-6">
+        <input id="delayAmount" type="range" min="0" step= ".1" max="5" value="0"/> 
       </div>
       <div class="col-xs-2">Delay</div>
-      <div class="col-xs-8">
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="recordButton">Record</button>
+      <div class="col-xs-4">
+        <button type="button" class="btn btn-primary btn-sm btn-block" id="recordButton">Record</button>
       </div>
     </div>
     <div class="row">
