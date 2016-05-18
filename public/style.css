@@ -45,6 +45,8 @@ div#header {
 .scBox {
   border: 1px solid black;
   height: 100px;
+  margin: 5px;
+  display: none;
 }
 
 .knob {
