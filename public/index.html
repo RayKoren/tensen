@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
@@ -27,84 +31,92 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="buffer-loader.js"></script>
     <link rel="stylesheet" href="style.css" media="screen" type="text/css" charset="utf-8">
-  </head>
-  <body class="container-fluid">
-  <!-- Header -->
+</head>
+
+<body class="container-fluid">
+    <!-- Header -->
     <div class="row">
-      <div class="col-md-12 title">
-        <h1>tesen</h1>
-          <button type="button" class="btn btn-info btn-xs">Info</button>
-           <img src="http://connect.soundcloud.com/2/btn-connect-s.png" alt="soundcloud connect" id="soundcloudConnect"/>
-          <form class="" action="index.html" method="post">
-            <label for="soundBank">Choose Sound
-              <select class="soundBank" name="soundBank">
-                <option value="tone1">Bank 1</option>
-                <option value="tone2">Bank 2</option>
-              </select>
-              <button type="submit" value="Submit" class="btn btn-success btn-xs">Change Sound</button>
-            </label>
-          </form>
-      </div>
+        <div class="col-md-12 title">
+            <h1>tesen</h1>
+            <button type="button" class="btn btn-primary btn-xs outline">Info</button>
+            <img src="http://connect.soundcloud.com/2/btn-connect-sc-s.png" alt="soundcloud connect" id="soundcloudConnect" />
+            <form class="" action="index.html" method="post">
+                <label for="soundBank">Choose Sound
+                    <select class="soundBank" name="soundBank">
+                        <option value="tone1">Bank 1</option>
+                        <option value="tone2">Bank 2</option>
+                    </select>
+                    <button type="submit" value="Submit" class="btn btn-primary btn-xs outline">Change Sound</button>
+                </label>
+            </form>
+        </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 divide">
-      </div>
+        <div class="col-xs-12 divide">
+        </div>
     </div>
     <!-- Buttons -->
     <div class="row">
-      <div class="col-xs-3 touchPad t1" id ="n81">Q</div>
-      <div class="col-xs-3 touchPad t2">W</div>
-      <div class="col-xs-3 touchPad t3">E</div>
-      <div class="col-xs-3 touchPad t4">R</div>
+        <div class="col-xs-3 touchPad t1" id="n81">Q</div>
+        <div class="col-xs-3 touchPad t2" id="n87">W</div>
+        <div class="col-xs-3 touchPad t3">E</div>
+        <div class="col-xs-3 touchPad t4">R</div>
     </div>
     <div class="row">
-      <div class="col-xs-3 touchPad t5">Y</div>
-      <div class="col-xs-3 touchPad t6">U</div>
-      <div class="col-xs-3 touchPad t7">I</div>
-      <div class="col-xs-3 touchPad t8">O</div>
+        <div class="col-xs-3 touchPad t5">Y</div>
+        <div class="col-xs-3 touchPad t6">U</div>
+        <div class="col-xs-3 touchPad t7">I</div>
+        <div class="col-xs-3 touchPad t8">O</div>
     </div>
     <div class="row">
-      <div class="col-xs-3 touchPad t9">A</div>
-      <div class="col-xs-3 touchPad t10">S</div>
-      <div class="col-xs-3 touchPad t11">D</div>
-      <div class="col-xs-3 touchPad t12">F</div>
+        <div class="col-xs-3 touchPad t9">A</div>
+        <div class="col-xs-3 touchPad t10">S</div>
+        <div class="col-xs-3 touchPad t11">D</div>
+        <div class="col-xs-3 touchPad t12">F</div>
     </div>
     <div class="row">
-      <div class="col-xs-3 touchPad t13">H</div>
-      <div class="col-xs-3 touchPad t14">J</div>
-      <div class="col-xs-3 touchPad t15">K</div>
-      <div class="col-xs-3 touchPad t16">L</div>
+        <div class="col-xs-3 touchPad t13">H</div>
+        <div class="col-xs-3 touchPad t14">J</div>
+        <div class="col-xs-3 touchPad t15">K</div>
+        <div class="col-xs-3 touchPad t16">L</div>
     </div>
     <div class="row">
-      <div class="col-xs-12 divide">
-      </div>
+        <div class="col-xs-12 divide">
+        </div>
     </div>
 
     <!--Footer-->
     <div class="row">
-      <div class="col-xs-6">
-        <input id="oscGain" type="range" min="0" step= "1" max="10" value="2"/>
-      </div>
-      <div class="col-xs-2" >Vol</div>
-      <div class="col-xs-4">
-        <button type="button" class="btn btn-danger btn-sm btn-block stop">Stop</button>
-      </div>
+
+
+    <div class="col-md-12 title">
+        <div class="row pad">
+          <div class="col-xs-2">volume</div>
+            <div class="col-xs-6">
+                <input id="oscGain" type="range" min="0" step="1" max="10" value="2" />
+            </div>
+
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-primary btn-sm btn-block stop outline">stop</button>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">delay</div>
+            <div class="col-xs-6">
+                <input id="delayAmount" type="range" min="0" step=".1" max="5" value="0" />
+            </div>
+
+            <div class="col-xs-4">
+                <button type="button" class="btn btn-primary btn-sm btn-block record outline">record</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">SoundCloud Box
+                <iframe class="col-xs-12 scBox" id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
+            </div>
+        </div>
     </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <input id="delayAmount" type="range" min="0" step= ".1" max="5" value="0"/>
-      </div>
-      <div class="col-xs-2">Delay</div>
-      <div class="col-xs-4">
-        <button type="button" class="btn btn-primary btn-sm btn-block record">Record</button>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">SoundCloud Box
-        <iframe class="col-xs-12 scBox"id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
-      </div>
-    </div>
-  </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -112,5 +124,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-  </body>
+</body>
+
 </html>

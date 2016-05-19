@@ -2,33 +2,53 @@ body {
   width: 320px;
   height: 480px;
   background-color: #313738;
+  font-family: 'Raleway', sans-serif;
+}
+select {
+  font-family: 'Raleway', sans-serif;
+  border: 0;
+  color: black;
+}
+
+h1 {
+  font-family: 'Aldrich', sans-serif;
 }
 div {
   color: white;
 }
 div.touchPad {
-  border-radius: 5px;
-  border: 1px solid black;
-  width: 80px;
-  height: 80px;
-  background-color: #07889B;
+        width: 80px;
+				height: 80px;
+				border: 1px solid hsla(60, 100%, 98%, 1);
+				border-radius: 6px;
+        box-shadow: 0px 0px 3px 3px rgba(0,255,255, 0.3);
+        background: -webkit-radial-gradient( circle, #81C2CC 10%, #27707a 80%);
+				text-align: center;
 }
 .touchPad:hover {
-  background-color: rgba(255, 255, 255, 0.8);
+  background: hsla(187.7, 91.36%, 31.76%, 0.3);
+  box-shadow: 0px 0px 5px 5px hsla(0, 0%, 100%, 0.3);
 }
 .touchPad:active {
-  background-color: #E37222;
-  box-shadow: 1px 2px 2px 1px hsl(0, 35%, 93%);
+  background: -webkit-radial-gradient( circle, #81C2CC 10%, #39A0AF 80%);
+  box-shadow: 0px 0px 3px 3px hsl(0, 35%, 93%)
+  text-align: center;
 }
 .active {
-  background-color: #E37222;
-  box-shadow: 1px 2px 2px 1px hsl(0, 35%, 93%);
+  width: 80px;
+  height: 80px;
+  border: 1px solid hsla(60, 100%, 98%, 1);
+  border-radius: 6px;
+  background: -webkit-radial-gradient( circle, #81C2CC 10%, #39A0AF 80%);
+  box-shadow: 0px 0px 3px 3px hsl(0, 35%, 93%)
+  text-align: center;
 }
 .divide {
-  background-color: hsl(31, 84%, 68%);
-  border-radius: 10em;
+  background-color: hsl(60, 3%, 10%);
+  border-radius: 2em;
   height: 1em;
   width: 320px;
+  z-index: -1;
 }
 div#footer {
   border-radius: 5px;
@@ -70,8 +90,36 @@ div#header {
     border-radius: 2px;
     background: #f90;
 }
+.pad{
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
 
 .title {
   border: 1px solid white;
-  background-color: #07889B;
+  border-radius: 6px;
+  /*background-color: #07889B;*/
+  box-shadow: 0px 0px 3px 3px rgba(0,255,255, 0.3);
+  background: -webkit-radial-gradient( circle, #81C2CC 10%, #27707a 80%)
+}
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline {
+    background: none;
+    padding: 5px 5px;
+}
+.btn-primary.outline {
+    border: 2px solid hsla(199, 13%, 95%, 100);
+    color: hsla(199, 13%, 95%, 100);
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: hsla(180, 4%, 21%, 1);
+    border-color: hsla(0, 0%, 0%, 1);
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #007299;
+    color: #007299;
+    box-shadow: none;
 };

@@ -10,14 +10,15 @@ var bufferLoader;
 $(document).ready(function() {
 
     ////
-    init();
-    console.log("context.currentTime" + context.currentTime);
     var recorderObj = {
-        // context: context,
-        source: gainNode
+       context: context,
+       source: gainNode
     };
     recorder = new SC.Recorder(recorderObj);
     upload = new SC.upload();
+
+    init();
+    console.log("context.currentTime" + context.currentTime);
 
 
 
@@ -30,7 +31,8 @@ $(document).ready(function() {
         // initiate auth popup //
         SC.connect().then(function() {
             return SC.get('/me');
-        }).then(function(me) {
+        }).then(function(user){
+          SCConnected = true;}).then(function(me) {
             alert('Hello, ' + me.username);
         });
     });
@@ -45,7 +47,7 @@ $(document).ready(function() {
 
 
     //////// Load sounds into Buffer ////
-    var bufferLoader;
+    // Event Handler for changing soundBank //
     var sel;
     $("form").submit(function(event) {
         event.preventDefault();
@@ -53,16 +55,16 @@ $(document).ready(function() {
         context.close();
         $(".touchPad").off();
         $(document).off('keydown');
-        init();
+        init(); // must re-run init to change soundBank //
 
-        console.log(sel);
+        //console.log(sel);
     });
 
     function init() {
         try {
             // Fix up for prefixing
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
-            context = new webkitAudioContext();
+            context = new AudioContext();
         } catch (e) {
             alert('Web Audio API is not supported in this browser');
         }
@@ -71,9 +73,6 @@ $(document).ready(function() {
         gainNode = context.createGain();
         ////// Choose Sound Bank ////
         if ($(".soundBank").val() === 'tone1') {
-            // window.AudioContext = window.AudioContext || window.webkitAudioContext;
-            // context = new webkitAudioContext();
-
             bufferLoader = new BufferLoader(
                 context, [
                     '../samples/Bank 1/16.wav',
@@ -96,8 +95,6 @@ $(document).ready(function() {
                 finishedLoading
             );
         } else {
-            // window.AudioContext = window.AudioContext || window.webkitAudioContext;
-            // context = new webkitAudioContext();
             bufferLoader = new BufferLoader(
                 context, [
                     '../samples/Bank 2/1.wav',
@@ -250,11 +247,18 @@ $(document).ready(function() {
             }
             playSound(note);
         });
-
+        // $(document).keydown(function(event) {
+        //     var note = event.keyCode;
+        //     $(`#n${note}`).removeClass("touchPad");
+        //     $(`#n${note}`).addClass("active");
+        //     $(document).keyup(function(event) {
+        //       $(`#n${note}`).removeClass("active");
+        //       $(`#n${note}`).addClass("touchPad");
+        //     })
+        //   });
         $(document).keydown(function(event) {
             console.log(event.keyCode);
             var note = event.keyCode;
-            //$(`#n${note}`).toggleClass("active");
             switch (note) {
                 case 81:
                     note = bufferList[0];
@@ -317,7 +321,7 @@ $(document).ready(function() {
 
     stop.disabled = true;
     $(".record").click(function() {
-      if (!SCConnected) {
+      if (SCConnected === false) {
           SC.connect().then(function(){
             return SC.get('/me');
           }).then(function(user){
@@ -328,64 +332,39 @@ $(document).ready(function() {
           });
         } else {
           recorder.start();
-
         }
         stop.disabled = false;
         record.disabled = true;
-        console.log("hi");
+        console.log("Rec Start");
     });
     $(".stop").click(function() {
         recorder.stop();
+        recorder.play();
         stop.disabled = true;
         record.disabled = false;
-        console.log("bye");
-        var theBlob = recorder.getWAV();
-         recorder.saveAs('mySong');
+        console.log('Rec Stop');
 
-         recorder.getWAV().then(function(blob) {
-            //  $('#states').show();
-            //  $('#soundcloud').hide();
-             console.log('blob');
-             SC.upload({
-               asset_data: blob,
-               title: 'track' + Date.now(),
-               sharing: 'public',
-               progress: (event) => {
-                 console.log('progress', event);
-               }
-             }).then(function(track){
-
-               var checkProcessed = setInterval(function () {
-                 var uri = track.uri + '?client_id=19f527fc69b85cf2de94a95f9c538487';
-                 $.get(uri,function(result) {
-                   console.log("get",this);
-                   if (result.state === "failed" || result.state === "finished") {
-                     var src = "https://w.soundcloud.com/player/?url=" + track.secret_uri + "&amp;color=bbbbbb&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"
-
-                     console.log('uploaded', track);
-                    //  $('#soundcloud').attr('src', src);
-                    //  $('#states').hide();
-                    //  $('#soundcloud').show();
-                   }
-                   clearInterval(checkProcessed);
-                 })
-               },3000)
-             }).catch(function(){
-               console.log('err', arguments);
-             });
-         })
-
-
-        console.log('finish recordStop');
+        $('.scBox').show();
+        recorder.saveAs("New Song");
+        console.log(recorder);
+        recorder.getWAV().then(function(blob){
+        console.log('blobSaved');
+        SC.upload({
+          asset_data: blob,
+          title: 'track' + " " + "tesen",
+          sharing: 'public',
+        })
+        upload.request.addEventListener('progress', function(e){
+          console.log('progress: ', (e.loaded / e.total) * 100, '%');
+        })
+        upload.then(function(track){
+          alert('Upload is done! Check your sound at ' + track.permalink_url);
+        })
+      });
+        upload.then(function(track){
+          alert('Upload is done! Check your sound at ' + track.permalink_url);
         });
-
-    // Helper methods for our UI.
-
-    function updateTimer(ms) {
-        // update the timer text. Used when we're recording
-        $('.status').text(SC.Helper.millisecondsToHMS(ms));
-    }
-
+      });
 
 });
 //// End Doc Ready ///

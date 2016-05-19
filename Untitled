@@ -1,0 +1,44 @@
+// $('.stop').click(function(){
+//   // $('#states').addClass('loader-inner line-scale-party');
+//   // $('#recordDisplay').removeClass('loader-inner line-scale-party');
+//   console.log('Recording stopped');
+//   recorder.stop();
+//   // recorder.play();
+//
+//
+//   recorder.getWAV().then(function(blob) {
+//       //$('#states').show();
+//       //$('.scBox').hide();
+//       console.log('blob');
+//       SC.upload({
+//         asset_data: blob,
+//         title: 'track' + Date.now(),
+//         sharing: 'public',
+//         // progress: (event) => {
+//         //   console.log('progress', event);
+//         // }
+//       }).then(function(track){
+//
+//         var checkProcessed = setInterval(function () {
+//           var uri = track.uri + '?client_id=19f527fc69b85cf2de94a95f9c538487';
+//           $.get(uri,function(result) {
+//             console.log("get",this);
+//             if (result.state === "failed" || result.state === "finished") {
+//               var src = "https://w.soundcloud.com/player/?url=" + track.secret_uri + "&amp;color=bbbbbb&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"
+//
+//               console.log('uploaded', track);
+//               $('#soundcloud').attr('src', src);
+//               //$('#states').hide();
+//               $('.scBox').show();
+//             }
+//             clearInterval(checkProcessed);
+//           })
+//         },3000)
+//       }).catch(function(){
+//         console.log('err', arguments);
+//       });
+//   })
+//
+//
+// console.log('finish recordStop');
+// });
