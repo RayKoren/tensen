@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/public/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet' type='text/css'>
@@ -36,12 +38,16 @@
 <body class="container-fluid" id="page">
     <!-- Header -->
     <div class="row">
-        <div class="col-md-12 title">
+
+    </div>
+    <div class="row title">
+        <div class="col-md-12">
             <h1>tesen</h1>
-            <button type="button" class="btn btn-primary btn-xs outline pad" data-toggle="popover" data-placement="right" data-trigger="hover focus" title="info" data-content="To choose a sound then click 'change sound' to load a new sound bank. Click the pads to play sounds.
+            <button type="button" class="btn btn-primary btn-xs outline pad" data-toggle="popover" data-placement="right" data-trigger="hover focus" title="info" data-content="To choose a sound then click 'change sound' to load a new sound bank. Click the pads to play sounds. You must connect SoundCloud to Record.
             Enjoy!
-            Created by: Ray Koren With JavaScript, Bootstrap, Web Audio API and SoundCloud API. May 2016.">Info</button>
-            <img src="http://connect.soundcloud.com/2/btn-connect-sc-s.png" alt="soundcloud connect" id="soundcloudConnect" />
+            (On iOS devices click another button to close this popup.)
+            Created by: Ray Koren With HTML5, CSS, JavaScript, Bootstrap, Web Audio API and SoundCloud API. May 2016.">Info</button>
+
             <form class="pad" action="index.html" method="post">
                 <label for="soundBank">choose sound
                     <select class="soundBank" name="soundBank">
@@ -90,33 +96,40 @@
     <!--Footer-->
     <div class="row">
 
+        <div class="col-md-12 title">
+            <div class="row pad padBottom">
+                <div class="col-xs-2">volume</div>
+                <div class="col-xs-6">
+                    <input id="oscGain" type="range" min="0" step="1" max="10" value="2" />
+                </div>
 
-    <div class="col-md-12 title">
-        <div class="row pad">
-          <div class="col-xs-2">volume</div>
-            <div class="col-xs-6">
-                <input id="oscGain" type="range" min="0" step="1" max="10" value="2" />
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-primary btn-sm btn-block stop outline" id="stopButton">stop</button>
+                </div>
             </div>
-
-            <div class="col-xs-4">
-                <button type="button" class="btn btn-primary btn-sm btn-block stop outline">stop</button>
+            <div class="row padBottom">
+                <div class="col-xs-2">delay</div>
+                <div class="col-xs-6">
+                    <input id="delayAmount" type="range" min="0" step=".1" max="5" value="0" />
+                </div>
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-primary btn-sm btn-block record outline"id="recordButton">record</button>
+                </div>
+                <div class="col-md-12 pad">
+                  <button type="button" class="btn btn-primary btn-xs outline pad" id="soundcloudConnect"><img src="/soundcloud.png" class="scLogo"/>Connect to Record</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loaderAni">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <iframe class="col-xs-12 scBox" id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
+                </div>
             </div>
         </div>
-        <div class="row padBottom" >
-          <div class="col-xs-2">delay</div>
-            <div class="col-xs-6">
-                <input id="delayAmount" type="range" min="0" step=".1" max="5" value="0" />
-            </div>
-            <div class="col-xs-4">
-                <button type="button" class="btn btn-primary btn-sm btn-block record outline">record</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <iframe class="col-xs-12 scBox" id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
-            </div>
-        </div>
-    </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

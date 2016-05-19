@@ -8,7 +8,9 @@ var bufferLoader;
 
 //// Doc Ready ///
 $(document).ready(function() {
-
+$('#soundcloudConnect').show();
+$('#recordButton').hide();
+$('#stopButton').hide();
     /// popover stuff ///
     $(function() {
         $('[data-toggle="popover"]').popover()
@@ -42,6 +44,9 @@ $(document).ready(function() {
         }).then(function(me) {
             alert('Hello, ' + me.username);
         });
+        $('#soundcloudConnect').hide();
+        $('#recordButton').show();
+        $('#stopButton').show();
     });
     ///// end soundcloud init /////
     ///// AudioContext init /////
@@ -333,6 +338,8 @@ $(document).ready(function() {
     /// Record stop code///
     $(".stop").click(function() {
         recorder.stop();
+        $('.loaderAni').show();
+        $('.scBox').hide();
         stop.disabled = true;
         record.disabled = false;
         console.log('Recording Stopped');
@@ -353,7 +360,7 @@ $(document).ready(function() {
 
                             console.log('uploaded', track);
                             $('#soundcloud').attr('src', src);
-                            //$('#states').hide();
+                            $('.loaderAni').hide();
                             $('.scBox').show();
                         }
                         clearInterval(checkProcessed);

@@ -9,15 +9,15 @@ select {
   border: 0;
   color: black;
 }
-.popover-title {
-    color: black;
-    font-size: 15px;
+.scLogo {
+  height: 4rem;
+  width: 4rem;
 }
-.popover-content {
-    color: black;
-    font-size: 10px;
+#soundcloudConnect {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
 }
-
 h1 {
   font-family: 'Aldrich', sans-serif;
 }
@@ -58,18 +58,14 @@ div.touchPad {
   width: 320px;
   z-index: -1;
 }
-/*div#footer {
-  border-radius: 5px;
-  border: 1px solid black;
-  height: 60px;
-  color: white;
-  background-color: hsl(0, 0%, 0%);
+.popover-title {
+    color: black;
+    font-size: 15px;
 }
-div#header {
-  border: 1px solid black;
-  height: 60px;
-  color: white;
-}*/
+.popover-content {
+    color: black;
+    font-size: 10px;
+}
 .scBox {
   height: 146px;
   margin: 5px;
@@ -78,6 +74,7 @@ div#header {
 .pad{
   padding-top: 2rem;
   padding-bottom: 1rem;
+  text-align: center;
 }
 .padBottom{
   padding-bottom: 2rem;
@@ -89,10 +86,6 @@ div#header {
   box-shadow: 0px 0px 3px 3px rgba(0,255,255, 0.3);
   background: -webkit-radial-gradient( circle, #81C2CC 10%, #27707a 80%)
 }
-/***********************
-  OUTLINE BUTTONS
-************************/
-
 .btn.outline {
     background: none;
     padding: 5px 5px;
@@ -109,4 +102,70 @@ div#header {
     border-color: #007299;
     color: #007299;
     box-shadow: none;
+}
+
+/*===========================================================
+ * Facebook Loader Animation for SoundCloud Box
+ * ========================================================*/
+.loaderAni {
+  display: none;
+}
+.facebook div{
+     height:50px;
+     width:20px;
+     display:inline-block;
+     background-color: #56bbdb;
+     border:1px solid #217c99;
+     -webkit-animation:facebook_loader 1.3s linear infinite;
+     -moz-animation:facebook_loader 1.3s linear infinite;
+     animation:facebook_loader 1.3s linear infinite;
+     -webkit-transform:scale(0.91);
+     -moz-transform:scale(0.91);
+     transform:scale(0.91);
+}
+
+.facebook div:nth-child(1){
+     -webkit-animation-delay:0.39s;
+     -moz-animation-delay:0.39s;
+     animation-delay:0.39s;
+}
+.facebook div:nth-child(2){
+     -webkit-animation-delay:0.52s;
+     -moz-animation-delay:0.52s;
+     animation-delay:0.52s;
+}
+.facebook div:nth-child(3){
+     -webkit-animation-delay:0.65s;
+     -moz-animation-delay:0.65s;
+     animation-delay:0.65s;
+}
+@-webkit-keyframes facebook_loader{
+     0%{
+          -webkit-transform:scale(1.2);
+          opacity:1
+     }
+     100%{
+          -webkit-transform:scale(0.7);
+          opacity:0.1
+     }
+}
+@-moz-keyframes facebook_loader{
+     0%{
+          -moz-transform:scale(1.2);
+          opacity:1
+     }
+     100%{
+          -moz-transform:scale(0.7);
+          opacity:0.1
+     }
+}
+@keyframes facebook_loader{
+     0%{
+          transform:scale(1.2);
+          opacity:1
+     }
+     100%{
+          transform:scale(0.7);
+          opacity:0.1
+     }
 };
