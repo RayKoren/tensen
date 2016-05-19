@@ -58,7 +58,7 @@ div.touchPad {
   width: 320px;
   z-index: -1;
 }
-div#footer {
+/*div#footer {
   border-radius: 5px;
   border: 1px solid black;
   height: 60px;
@@ -69,10 +69,9 @@ div#header {
   border: 1px solid black;
   height: 60px;
   color: white;
-}
+}*/
 .scBox {
-  border: 1px solid black;
-  height: 100px;
+  height: 146px;
   margin: 5px;
   display: none;
 }
@@ -83,7 +82,6 @@ div#header {
 .padBottom{
   padding-bottom: 2rem;
 }
-
 .title {
   border: 1px solid white;
   border-radius: 6px;

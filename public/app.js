@@ -344,7 +344,6 @@ $(document).ready(function() {
                 title: 'track' + " " + "tesen",
                 sharing: 'public',
             }).then(function(track) {
-
                 var checkProcessed = setInterval(function() {
                     var uri = track.uri + '?client_id=19f527fc69b85cf2de94a95f9c538487';
                     $.get(uri, function(result) {
