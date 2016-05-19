@@ -57,8 +57,6 @@ $(document).ready(function() {
         $(".touchPad").off();
         $(document).off('keydown');
         init(); // must re-run init to change soundBank //
-
-        //console.log(sel);
     });
 
     function init() {
@@ -69,16 +67,15 @@ $(document).ready(function() {
         } catch (e) {
             alert('Web Audio API is not supported in this browser');
         }
-
+        // Create Delay Gain and Recorder Object //
         delayNode = context.createDelay();
         gainNode = context.createGain();
 
         var recorderObj = {
-            //context: context,
             source: gainNode
         };
         recorder = new SC.Recorder(recorderObj);
-        
+
         ////// Choose Sound Bank ////
         if ($(".soundBank").val() === 'tone1') {
             bufferLoader = new BufferLoader(
@@ -320,38 +317,25 @@ $(document).ready(function() {
 
     };
     /// end of playing loaded buffers ///
-    /// Recorder ///
+    /// SoundCloud Recorder ///
     var record = document.querySelector('.record');
     var stop = document.querySelector('.stop');
     // disable stop button while not recording
 
     stop.disabled = true;
+    /// Record start code///
     $(".record").click(function() {
-        // if (SCConnected === false) {
-        //     SC.connect().then(function() {
-        //         return SC.get('/me');
-        //     }).then(function(user) {
-        //         SCConnected = true;
-        //         recorder.start();
-        //     }).catch(function(error) {
-        //         alert('Error: ' + error.message);
-        //     });
-        // } else {
-            recorder.start();
-        // }
+        recorder.start();
         stop.disabled = false;
         record.disabled = true;
-        console.log("Rec Start");
+        console.log("Recording Started");
     });
-    ///stop code///
+    /// Record stop code///
     $(".stop").click(function() {
         recorder.stop();
-        //recorder.play();
         stop.disabled = true;
         record.disabled = false;
-        console.log('Rec Stop');
-        //var blob = recorder.getWAV();
-        //recorder.saveAs("New Song");
+        console.log('Recording Stopped');
         console.log(recorder);
         recorder.getWAV().then(function(blob) {
             console.log('blobSaved');
@@ -359,22 +343,33 @@ $(document).ready(function() {
                 asset_data: blob,
                 title: 'track' + " " + "tesen",
                 sharing: 'public',
+            }).then(function(track) {
+
+                var checkProcessed = setInterval(function() {
+                    var uri = track.uri + '?client_id=19f527fc69b85cf2de94a95f9c538487';
+                    $.get(uri, function(result) {
+                        console.log("get", this);
+                        if (result.state === "failed" || result.state === "finished") {
+                            var src = "https://w.soundcloud.com/player/?url=" + track.secret_uri + "&amp;color=bbbbbb&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"
+
+                            console.log('uploaded', track);
+                            $('#soundcloud').attr('src', src);
+                            //$('#states').hide();
+                            $('.scBox').show();
+                        }
+                        clearInterval(checkProcessed);
+                    })
+                }, 3000)
+            }).catch(function() {
+                console.log('err', arguments);
             })
-            // upload.request.addEventListener('progress', function(e) {
-            //     console.log('progress: ', (e.loaded / e.total) * 100, '%');
-            // })
             upload.then(function(track) {
                 alert('Upload is done! Check your sound at ' + track.permalink_url);
-            }).catch(function(error){
-              console.log(error);
-              });
-        }).catch(function(error){
-          console.log(error);
+            })
+        }).catch(function(error) {
+            console.log(error);
         });
-        // upload.then(function(track) {
-        //     alert('Upload is done! Check your sound at ' + track.permalink_url);
-        // });
-        $('.scBox').show();
+
     });
 
 });
