@@ -9,18 +9,28 @@ var bufferLoader;
 //// Doc Ready ///
 $(document).ready(function() {
 
-    ////
+    /// popover stuff ///
+    $(function() {
+        $('[data-toggle="popover"]').popover()
+    })
+    $('body').on('click', function(e) {
+        $('[data-toggle="popover"]').each(function() {
+            //the 'is' for buttons that trigger popups
+            //the 'has' for icons within a button that triggers a popup
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
+
+    ////recoder object ///
+    init();
     var recorderObj = {
-       context: context,
-       source: gainNode
+        context: context,
+        //source: gainNode
     };
     recorder = new SC.Recorder(recorderObj);
     upload = new SC.upload();
-
-    init();
-    console.log("context.currentTime" + context.currentTime);
-
-
 
     /// SOUNDCLOUD AUTHENTICATION ///
     SC.initialize({
@@ -31,21 +41,16 @@ $(document).ready(function() {
         // initiate auth popup //
         SC.connect().then(function() {
             return SC.get('/me');
-        }).then(function(user){
-          SCConnected = true;}).then(function(me) {
+        }).then(function(user) {
+            SCConnected = true;
+        }).then(function(me) {
             alert('Hello, ' + me.username);
         });
     });
     ///// end soundcloud init /////
     ///// AudioContext init /////
-    //var context;
+
     window.addEventListener('load', init, false);
-
-
-
-
-
-
     //////// Load sounds into Buffer ////
     // Event Handler for changing soundBank //
     var sel;
@@ -121,17 +126,15 @@ $(document).ready(function() {
     }
     /////// playSound function declaration /////
     function playSound(buffer) {
-
         var source = context.createBufferSource();
         var oscGain = document.getElementById('oscGain').value;
         var delayAmount = document.getElementById('delayAmount').value;
         source.buffer = buffer;
-        //source.connect(context.destination);
         delayNode.delayTime.value = delayAmount;
         gainNode.gain.value = oscGain;
         source.connect(gainNode);
         source.connect(delayNode);
-        delayNode.connect(context.destination);
+        delayNode.connect(gainNode);
         gainNode.connect(context.destination);
         source.start(0);
     }
@@ -321,50 +324,51 @@ $(document).ready(function() {
 
     stop.disabled = true;
     $(".record").click(function() {
-      if (SCConnected === false) {
-          SC.connect().then(function(){
-            return SC.get('/me');
-          }).then(function(user){
-              SCConnected = true;
-              recorder.start();
-          }).catch(function(error){
-            alert('Error: ' + error.message);
-          });
+        if (SCConnected === false) {
+            SC.connect().then(function() {
+                return SC.get('/me');
+            }).then(function(user) {
+                SCConnected = true;
+                recorder.start();
+            }).catch(function(error) {
+                alert('Error: ' + error.message);
+            });
         } else {
-          recorder.start();
+            recorder.start();
         }
         stop.disabled = false;
         record.disabled = true;
         console.log("Rec Start");
     });
+    ///stop code///
     $(".stop").click(function() {
         recorder.stop();
         recorder.play();
         stop.disabled = true;
         record.disabled = false;
         console.log('Rec Stop');
-
-        $('.scBox').show();
+        var blob = recorder.getWAV();
         recorder.saveAs("New Song");
         console.log(recorder);
-        recorder.getWAV().then(function(blob){
-        console.log('blobSaved');
-        SC.upload({
-          asset_data: blob,
-          title: 'track' + " " + "tesen",
-          sharing: 'public',
+        recorder.getWAV().then(function(blob) {
+            console.log('blobSaved');
+            SC.upload({
+                asset_data: blob,
+                title: 'track' + " " + "tesen",
+                sharing: 'public',
+            })
+            upload.request.addEventListener('progress', function(e) {
+                console.log('progress: ', (e.loaded / e.total) * 100, '%');
+            })
+            upload.then(function(track) {
+                alert('Upload is done! Check your sound at ' + track.permalink_url);
+            })
         })
-        upload.request.addEventListener('progress', function(e){
-          console.log('progress: ', (e.loaded / e.total) * 100, '%');
-        })
-        upload.then(function(track){
-          alert('Upload is done! Check your sound at ' + track.permalink_url);
-        })
-      });
-        upload.then(function(track){
-          alert('Upload is done! Check your sound at ' + track.permalink_url);
+        upload.then(function(track) {
+            alert('Upload is done! Check your sound at ' + track.permalink_url);
         });
-      });
+        $('.scBox').show();
+    });
 
 });
 //// End Doc Ready ///

@@ -9,6 +9,14 @@ select {
   border: 0;
   color: black;
 }
+.popover-title {
+    color: black;
+    font-size: 15px;
+}
+.popover-content {
+    color: black;
+    font-size: 10px;
+}
 
 h1 {
   font-family: 'Aldrich', sans-serif;
@@ -68,31 +76,12 @@ div#header {
   margin: 5px;
   display: none;
 }
-
-.knob {
-    position:relative;
-    cursor: move;
-    background: #b33b3b;
-    /*-webkit-box-shadow: -2px -2px 5px 1px #666;
-    box-shadow: -2px -2px 5px 1px #666; */
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50%;
-    border: 1px solid white;
-    height: 40px;
-    width: 40px;
-}
-
-.knob .dot {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 2px;
-    background: #f90;
-}
 .pad{
   padding-top: 2rem;
   padding-bottom: 1rem;
+}
+.padBottom{
+  padding-bottom: 2rem;
 }
 
 .title {

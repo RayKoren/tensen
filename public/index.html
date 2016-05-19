@@ -33,20 +33,22 @@
     <link rel="stylesheet" href="style.css" media="screen" type="text/css" charset="utf-8">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" id="page">
     <!-- Header -->
     <div class="row">
         <div class="col-md-12 title">
             <h1>tesen</h1>
-            <button type="button" class="btn btn-primary btn-xs outline">Info</button>
+            <button type="button" class="btn btn-primary btn-xs outline pad" data-toggle="popover" data-placement="right" data-trigger="hover focus" title="info" data-content="To choose a sound then click 'change sound' to load a new sound bank. Click the pads to play sounds.
+            Enjoy!
+            Created by: Ray Koren With JavaScript, Bootstrap, Web Audio API and SoundCloud API. May 2016.">Info</button>
             <img src="http://connect.soundcloud.com/2/btn-connect-sc-s.png" alt="soundcloud connect" id="soundcloudConnect" />
-            <form class="" action="index.html" method="post">
-                <label for="soundBank">Choose Sound
+            <form class="pad" action="index.html" method="post">
+                <label for="soundBank">choose sound
                     <select class="soundBank" name="soundBank">
-                        <option value="tone1">Bank 1</option>
-                        <option value="tone2">Bank 2</option>
+                        <option value="tone1">sound 1</option>
+                        <option value="tone2">sound 2</option>
                     </select>
-                    <button type="submit" value="Submit" class="btn btn-primary btn-xs outline">Change Sound</button>
+                    <button type="submit" value="Submit" class="btn btn-primary btn-xs outline pad">change sound</button>
                 </label>
             </form>
         </div>
@@ -100,18 +102,17 @@
                 <button type="button" class="btn btn-primary btn-sm btn-block stop outline">stop</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row padBottom" >
           <div class="col-xs-2">delay</div>
             <div class="col-xs-6">
                 <input id="delayAmount" type="range" min="0" step=".1" max="5" value="0" />
             </div>
-
             <div class="col-xs-4">
                 <button type="button" class="btn btn-primary btn-sm btn-block record outline">record</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">SoundCloud Box
+            <div class="col-xs-12">
                 <iframe class="col-xs-12 scBox" id="soundcloud" width="100%" height="146px" scrolling="no" frameborder="no" src=""></iframe>
             </div>
         </div>
