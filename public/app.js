@@ -25,12 +25,8 @@ $(document).ready(function() {
 
     ////recoder object ///
     init();
-    var recorderObj = {
-        context: context,
-        //source: gainNode
-    };
-    recorder = new SC.Recorder(recorderObj);
-    upload = new SC.upload();
+
+    //upload = new SC.upload();
 
     /// SOUNDCLOUD AUTHENTICATION ///
     SC.initialize({
@@ -50,7 +46,7 @@ $(document).ready(function() {
     ///// end soundcloud init /////
     ///// AudioContext init /////
 
-    window.addEventListener('load', init, false);
+    //window.addEventListener('load', init, false);
     //////// Load sounds into Buffer ////
     // Event Handler for changing soundBank //
     var sel;
@@ -76,6 +72,13 @@ $(document).ready(function() {
 
         delayNode = context.createDelay();
         gainNode = context.createGain();
+
+        var recorderObj = {
+            //context: context,
+            source: gainNode
+        };
+        recorder = new SC.Recorder(recorderObj);
+        
         ////// Choose Sound Bank ////
         if ($(".soundBank").val() === 'tone1') {
             bufferLoader = new BufferLoader(
@@ -324,18 +327,18 @@ $(document).ready(function() {
 
     stop.disabled = true;
     $(".record").click(function() {
-        if (SCConnected === false) {
-            SC.connect().then(function() {
-                return SC.get('/me');
-            }).then(function(user) {
-                SCConnected = true;
-                recorder.start();
-            }).catch(function(error) {
-                alert('Error: ' + error.message);
-            });
-        } else {
+        // if (SCConnected === false) {
+        //     SC.connect().then(function() {
+        //         return SC.get('/me');
+        //     }).then(function(user) {
+        //         SCConnected = true;
+        //         recorder.start();
+        //     }).catch(function(error) {
+        //         alert('Error: ' + error.message);
+        //     });
+        // } else {
             recorder.start();
-        }
+        // }
         stop.disabled = false;
         record.disabled = true;
         console.log("Rec Start");
@@ -343,30 +346,34 @@ $(document).ready(function() {
     ///stop code///
     $(".stop").click(function() {
         recorder.stop();
-        recorder.play();
+        //recorder.play();
         stop.disabled = true;
         record.disabled = false;
         console.log('Rec Stop');
-        var blob = recorder.getWAV();
-        recorder.saveAs("New Song");
+        //var blob = recorder.getWAV();
+        //recorder.saveAs("New Song");
         console.log(recorder);
         recorder.getWAV().then(function(blob) {
             console.log('blobSaved');
-            SC.upload({
+            var upload = SC.upload({
                 asset_data: blob,
                 title: 'track' + " " + "tesen",
                 sharing: 'public',
             })
-            upload.request.addEventListener('progress', function(e) {
-                console.log('progress: ', (e.loaded / e.total) * 100, '%');
-            })
+            // upload.request.addEventListener('progress', function(e) {
+            //     console.log('progress: ', (e.loaded / e.total) * 100, '%');
+            // })
             upload.then(function(track) {
                 alert('Upload is done! Check your sound at ' + track.permalink_url);
-            })
-        })
-        upload.then(function(track) {
-            alert('Upload is done! Check your sound at ' + track.permalink_url);
+            }).catch(function(error){
+              console.log(error);
+              });
+        }).catch(function(error){
+          console.log(error);
         });
+        // upload.then(function(track) {
+        //     alert('Upload is done! Check your sound at ' + track.permalink_url);
+        // });
         $('.scBox').show();
     });
 
