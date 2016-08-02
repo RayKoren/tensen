@@ -19,8 +19,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
@@ -37,26 +35,31 @@
 
 <body class="container-fluid" id="page">
     <!-- Header -->
-    <div class="row">
-
-    </div>
     <div class="row title">
         <div class="col-md-12">
-            <h1>tesen</h1>
-            <button type="button" class="btn btn-primary btn-xs outline pad" data-toggle="popover" data-placement="right" data-trigger="hover focus" title="info" data-content="To choose a sound then click 'change sound' to load a new sound bank. Click the pads to play sounds. You must connect SoundCloud to Record.
-            Enjoy!
-            (On iOS devices click another button to close this popup.)
-            Created by: Ray Koren With HTML5, CSS, JavaScript, Bootstrap, Web Audio API and SoundCloud API. May 2016.">Info</button>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>tensen</h1>
+                    <button type="button" class="btn btn-primary btn-xs outline pad" data-toggle="popover" data-placement="right" data-trigger="hover focus" title="info" data-content="To choose a new sound, select an option from the menu then click 'change sound' to load the new sound bank. Click the pads or press the displayed letters to play sounds. You must connect to your SoundCloud account to Record. Recordings will automatically publish to your SoundCloud account!
 
-            <form class="pad" action="index.html" method="post">
-                <label for="soundBank">choose sound
-                    <select class="soundBank" name="soundBank">
-                        <option value="tone1">sound 1</option>
-                        <option value="tone2">sound 2</option>
-                    </select>
-                    <button type="submit" value="Submit" class="btn btn-primary btn-xs outline pad">change sound</button>
-                </label>
-            </form>
+                    Enjoy!
+
+                    (On iOS devices click another button to close this popup.)
+
+                    Created by: Ray Koren With HTML5, CSS, JavaScript, Bootstrap, Web Audio API and SoundCloud API. May 2016.">Info</button>
+                </div>
+            </div>
+            <div class="row">
+                <form class="pad" action="index.html" method="post">
+                    <label for="soundBank">choose sound
+                        <select class="soundBank" name="soundBank">
+                            <option value="tone1">sound 1</option>
+                            <option value="tone2">sound 2</option>
+                        </select>
+                        <button type="submit" value="Submit" class="btn btn-primary btn-xs outline pad">change sound</button>
+                    </label>
+                </form>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -65,28 +68,28 @@
     </div>
     <!-- Buttons -->
     <div class="row">
-        <div class="col-xs-3 touchPad t1" id="n81">Q</div>
-        <div class="col-xs-3 touchPad t2" id="n87">W</div>
-        <div class="col-xs-3 touchPad t3">E</div>
-        <div class="col-xs-3 touchPad t4">R</div>
+        <div class="col-xs-3 flex touchPad t1" id="n81">Q</div>
+        <div class="col-xs-3 flex touchPad t2" id="n87">W</div>
+        <div class="col-xs-3 flex touchPad t3" id="n69">E</div>
+        <div class="col-xs-3 flex touchPad t4" id="n82">R</div>
     </div>
     <div class="row">
-        <div class="col-xs-3 touchPad t5">Y</div>
-        <div class="col-xs-3 touchPad t6">U</div>
-        <div class="col-xs-3 touchPad t7">I</div>
-        <div class="col-xs-3 touchPad t8">O</div>
+        <div class="col-xs-3 flex touchPad t5" id="n89">Y</div>
+        <div class="col-xs-3 flex touchPad t6" id="n85">U</div>
+        <div class="col-xs-3 flex touchPad t7" id="n73">I</div>
+        <div class="col-xs-3 flex touchPad t8" id="n79">O</div>
     </div>
     <div class="row">
-        <div class="col-xs-3 touchPad t9">A</div>
-        <div class="col-xs-3 touchPad t10">S</div>
-        <div class="col-xs-3 touchPad t11">D</div>
-        <div class="col-xs-3 touchPad t12">F</div>
+        <div class="col-xs-3 flex touchPad t9" id="n65">A</div>
+        <div class="col-xs-3 flex touchPad t10" id="n83">S</div>
+        <div class="col-xs-3 flex touchPad t11" id="n68">D</div>
+        <div class="col-xs-3 flex touchPad t12" id="n70">F</div>
     </div>
     <div class="row">
-        <div class="col-xs-3 touchPad t13">H</div>
-        <div class="col-xs-3 touchPad t14">J</div>
-        <div class="col-xs-3 touchPad t15">K</div>
-        <div class="col-xs-3 touchPad t16">L</div>
+        <div class="col-xs-3 flex touchPad t13" id="n72">H</div>
+        <div class="col-xs-3 flex touchPad t14" id="n74">J</div>
+        <div class="col-xs-3 flex touchPad t15" id="n75">K</div>
+        <div class="col-xs-3 flex touchPad t16" id="n76">L</div>
     </div>
     <div class="row">
         <div class="col-xs-12 divide">
@@ -113,14 +116,16 @@
                     <input id="delayAmount" type="range" min="0" step=".1" max="5" value="0" />
                 </div>
                 <div class="col-xs-4">
-                    <button type="button" class="btn btn-primary btn-sm btn-block record outline"id="recordButton">record</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-block record outline" id="recordButton">record</button>
                 </div>
-                <div class="col-md-12 pad">
-                  <button type="button" class="btn btn-primary btn-xs outline pad" id="soundcloudConnect"><img src="/soundcloud.png" class="scLogo"/>Connect to Record</button>
-                </div>
+                <br>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
+                  <div class="col-md-12 pad">
+                      <button type="button" class="btn btn-primary btn-xs outline pad" id="soundcloudConnect"><img src="/soundcloud.png" class="scLogo" />Connect to Record</button>
+                  </div>
                     <div class="loaderAni">
                         <div></div>
                         <div></div>

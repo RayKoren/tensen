@@ -4,8 +4,6 @@ var delayNode;
 var context;
 var bufferLoader;
 
-
-
 //// Doc Ready ///
 $(document).ready(function() {
 $('#soundcloudConnect').show();
@@ -25,11 +23,8 @@ $('#stopButton').hide();
         });
     });
 
-    ////recoder object ///
+    //// run init yo ///
     init();
-
-    //upload = new SC.upload();
-
     /// SOUNDCLOUD AUTHENTICATION ///
     SC.initialize({
         client_id: '19f527fc69b85cf2de94a95f9c538487',
@@ -50,9 +45,6 @@ $('#stopButton').hide();
     });
     ///// end soundcloud init /////
     ///// AudioContext init /////
-
-    //window.addEventListener('load', init, false);
-    //////// Load sounds into Buffer ////
     // Event Handler for changing soundBank //
     var sel;
     $("form").submit(function(event) {
@@ -63,6 +55,7 @@ $('#stopButton').hide();
         $(document).off('keydown');
         init(); // must re-run init to change soundBank //
     });
+    //////// Load sounds into Buffer on init ////
 
     function init() {
         try {
@@ -196,10 +189,10 @@ $('#stopButton').hide();
         t14.connect(context.destination);
         t15.connect(context.destination);
         t16.connect(context.destination);
-
+        /// play on click ///
         $(".touchPad").click(function() {
             var str = $(this).attr("class");
-            var padID = str.replace("col-xs-3 touchPad ", "")
+            var padID = str.replace("col-xs-3 flex touchPad ", "")
             var note = padID + ".buffer";
             //console.log(note);
 
@@ -255,15 +248,15 @@ $('#stopButton').hide();
             }
             playSound(note);
         });
-        // $(document).keydown(function(event) {
-        //     var note = event.keyCode;
-        //     $(`#n${note}`).removeClass("touchPad");
-        //     $(`#n${note}`).addClass("active");
-        //     $(document).keyup(function(event) {
-        //       $(`#n${note}`).removeClass("active");
-        //       $(`#n${note}`).addClass("touchPad");
-        //     })
-        //   });
+        ///// key down active css kills sound for click... ////
+        $(document).keydown(function(event) {
+            var note = event.keyCode;
+            $(`#n${note}`).addClass("active");
+            $(document).keyup(function(event) {
+            $(`#n${note}`).removeClass("active");
+            })
+          });
+        /// play sound on keydown ///
         $(document).keydown(function(event) {
             console.log(event.keyCode);
             var note = event.keyCode;
@@ -326,7 +319,6 @@ $('#stopButton').hide();
     var record = document.querySelector('.record');
     var stop = document.querySelector('.stop');
     // disable stop button while not recording
-
     stop.disabled = true;
     /// Record start code///
     $(".record").click(function() {
