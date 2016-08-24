@@ -194,7 +194,6 @@ $('#stopButton').hide();
             var str = $(this).attr("class");
             var padID = str.replace("col-xs-3 flex touchPad ", "")
             var note = padID + ".buffer";
-            //console.log(note);
 
             switch (note) {
                 case "t1.buffer":
@@ -258,7 +257,6 @@ $('#stopButton').hide();
           });
         /// play sound on keydown ///
         $(document).keydown(function(event) {
-            console.log(event.keyCode);
             var note = event.keyCode;
             switch (note) {
                 case 81:
@@ -335,7 +333,6 @@ $('#stopButton').hide();
         stop.disabled = true;
         record.disabled = false;
         console.log('Recording Stopped');
-        console.log(recorder);
         recorder.getWAV().then(function(blob) {
             console.log('blobSaved');
             var upload = SC.upload({
